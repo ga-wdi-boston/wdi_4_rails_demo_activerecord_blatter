@@ -1,0 +1,6 @@
+<dl>
+  <% @blats.each do |blat| %>
+    <dt><%= blat.title %></dt>
+    <dd><%= truncate(blat.body, length: 100) %></dd>
+  <% end %>
+</dl>
