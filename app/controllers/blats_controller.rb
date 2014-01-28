@@ -48,7 +48,7 @@ class BlatsController < ApplicationController
   def destroy
     if @blat.destroy
       flash[:notice] = 'Deleted the blat!'
-      redirect_to blats_path
+      redirect_to action: :index
     else
       # Assume whatever prevented the destroy added an error message for us
       flash.now[:errors] = @blat.errors.full_messages
