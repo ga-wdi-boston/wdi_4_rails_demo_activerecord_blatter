@@ -1,4 +1,6 @@
 class BlatsController < ApplicationController
+  before_action :find_blat, only: [:show, :edit, :update]
+
   def index
     @blats = if params[:show_all].present?
       Blat.all
@@ -8,7 +10,6 @@ class BlatsController < ApplicationController
   end
 
   def show
-    @blat = Blat.find(params[:id])
   end
 
   def new
@@ -30,11 +31,9 @@ class BlatsController < ApplicationController
   end
 
   def edit
-    @blat = Blat.find(params[:id])
   end
 
   def update
-    @blat = Blat.find(params[:id])
     @blat.assign_attributes(blat_params)
 
     if @blat.save
@@ -47,6 +46,10 @@ class BlatsController < ApplicationController
   end
 
   private
+
+  def find_blat
+    @blat = Blat.find(params[:id])
+  end
 
   def blat_params
     params.require(:blat).permit(:title, :body)
