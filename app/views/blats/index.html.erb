@@ -1,6 +1,6 @@
 <dl>
   <% @blats.each do |blat| %>
-    <dt><%= blat.title %></dt>
+    <dt><%= link_to blat.title, blat %></dt>
     <dd><%= truncate(blat.body, length: 100) %></dd>
   <% end %>
 </dl>
