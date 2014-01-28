@@ -1,5 +1,5 @@
 class BlatsController < ApplicationController
-  before_action :find_blat, only: [:show, :edit, :update]
+  before_action :find_blat, only: [:show, :edit, :update, :destroy]
 
   def index
     @blats = if params[:show_all].present?
@@ -42,6 +42,17 @@ class BlatsController < ApplicationController
     else
       flash.now[:errors] = @blat.errors.full_messages
       render :edit
+    end
+  end
+
+  def destroy
+    if @blat.destroy
+      flash[:notice] = 'Deleted the blat!'
+      redirect_to blats_path
+    else
+      # Assume whatever prevented the destroy added an error message for us
+      flash.now[:errors] = @blat.errors.full_messages
+      redirect_to :back
     end
   end
 

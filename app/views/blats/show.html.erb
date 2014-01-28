@@ -1,3 +1,6 @@
-<p><%= link_to 'Edit blat', edit_blat_path(@blat) %></p>
+<p>
+  <%= link_to 'Edit blat', edit_blat_path(@blat) %> |
+  <%= link_to 'Delete blat', blat_path(@blat), method: :delete, confirm: 'Seriously?' %>
+</p>
 <h2><%= @blat.title %></h2>
 <p><%= @blat.body %></p>
