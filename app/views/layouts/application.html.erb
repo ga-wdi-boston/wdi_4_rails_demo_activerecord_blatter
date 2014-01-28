@@ -9,6 +9,13 @@
 <body>
 
 <h1><%= link_to 'Blatter', root_path %></h1>
+<% if flash[:notice].present? %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:errors].present? %>
+  <p>Error: <%= flash[:errors].join(', ') %></p>
+<% end %>
+
 <%= yield %>
 
 </body>

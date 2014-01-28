@@ -16,8 +16,16 @@ class BlatsController < ApplicationController
   end
 
   def create
-    @blat = Blat.create(blat_params)
-    redirect_to @blat
+    @blat = Blat.new(blat_params)
+    if @blat.save
+      # Using flash[] because we want it to appear on the *next* request
+      flash[:notice] = 'Created a new blat!'
+      redirect_to @blat
+    else
+      # Using flash.now[] because we want it to appear on *this* request
+      flash.now[:errors] = @blat.errors.full_messages
+      render :new
+    end
   end
 
   private
