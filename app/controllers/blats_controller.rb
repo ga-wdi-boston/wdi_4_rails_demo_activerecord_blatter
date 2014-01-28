@@ -17,6 +17,7 @@ class BlatsController < ApplicationController
 
   def create
     @blat = Blat.new(blat_params)
+
     if @blat.save
       # Using flash[] because we want it to appear on the *next* request
       flash[:notice] = 'Created a new blat!'
@@ -25,6 +26,23 @@ class BlatsController < ApplicationController
       # Using flash.now[] because we want it to appear on *this* request
       flash.now[:errors] = @blat.errors.full_messages
       render :new
+    end
+  end
+
+  def edit
+    @blat = Blat.find(params[:id])
+  end
+
+  def update
+    @blat = Blat.find(params[:id])
+    @blat.assign_attributes(blat_params)
+
+    if @blat.save
+      flash[:notice] = 'Updated the blat!'
+      redirect_to @blat
+    else
+      flash.now[:errors] = @blat.errors.full_messages
+      render :edit
     end
   end
 
