@@ -4,3 +4,10 @@
     <dd><%= truncate(blat.body, length: 100) %></dd>
   <% end %>
 </dl>
+
+<% if params[:show_all].blank? %>
+  <p>
+    Showing blats from the last 7 days.
+    <%= link_to 'Show all blats?', blats_path(show_all: true) %>
+  </p>
+<% end %>
