@@ -51,7 +51,7 @@ class BlatsController < ApplicationController
       redirect_to action: :index
     else
       # Assume whatever prevented the destroy added an error message for us
-      flash.now[:errors] = @blat.errors.full_messages
+      flash[:errors] = @blat.errors.full_messages
       redirect_to :back
     end
   end
